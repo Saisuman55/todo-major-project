@@ -3,14 +3,14 @@ const User = require('../models/User');
 
 module.exports = async function auth(req, res, next) {
   try {
-    const header = req.headers.authorization;
-    if (!header) return res.status(401).json({ message: 'No token provided' });
+    const authorizationHeader = req.headers.authorization;
+    if (!authorizationHeader) return res.status(401).json({ message: 'No token provided' });
 
-    const token = header.split(' ')[1];
+    const token = authorizationHeader.split(' ')[1];
     if (!token) return res.status(401).json({ message: 'No token provided' });
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    const user = await User.findById(decoded.id).select('-password');
+    const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await User.findById(decodedToken.id).select('-password');
     if (!user) return res.status(401).json({ message: 'Invalid token' });
 
     req.user = user;
