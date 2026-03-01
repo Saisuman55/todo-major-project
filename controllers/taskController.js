@@ -2,11 +2,11 @@ const Task = require('../models/Task');
 
 exports.getTasks = async (req, res) => {
   try {
-    const filter = { user: req.user._id };
-    if (req.query.filter === 'completed') filter.completed = true;
-    if (req.query.filter === 'pending') filter.completed = false;
+    const taskQueryFilter = { user: req.user._id };
+    if (req.query.filter === 'completed') taskQueryFilter.completed = true;
+    if (req.query.filter === 'pending') taskQueryFilter.completed = false;
 
-    const tasks = await Task.find(filter).sort({ createdAt: -1 });
+    const tasks = await Task.find(taskQueryFilter).sort({ createdAt: -1 });
     res.json(tasks);
   } catch (err) {
     res.status(500).json({ message: 'Server error', error: err.message });
@@ -42,13 +42,13 @@ exports.getTask = async (req, res) => {
 
 exports.updateTask = async (req, res) => {
   try {
-    const updated = await Task.findOneAndUpdate(
+    const updatedTask = await Task.findOneAndUpdate(
       { _id: req.params.id, user: req.user._id },
       req.body,
       { new: true }
     );
-    if (!updated) return res.status(404).json({ message: 'Task not found' });
-    res.json(updated);
+    if (!updatedTask) return res.status(404).json({ message: 'Task not found' });
+    res.json(updatedTask);
   } catch (err) {
     res.status(500).json({ message: 'Server error', error: err.message });
   }
@@ -56,8 +56,8 @@ exports.updateTask = async (req, res) => {
 
 exports.deleteTask = async (req, res) => {
   try {
-    const removed = await Task.findOneAndDelete({ _id: req.params.id, user: req.user._id });
-    if (!removed) return res.status(404).json({ message: 'Task not found' });
+    const deletedTask = await Task.findOneAndDelete({ _id: req.params.id, user: req.user._id });
+    if (!deletedTask) return res.status(404).json({ message: 'Task not found' });
     res.json({ message: 'Task deleted' });
   } catch (err) {
     res.status(500).json({ message: 'Server error', error: err.message });
