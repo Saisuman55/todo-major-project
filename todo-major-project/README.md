@@ -1,92 +1,111 @@
-# Full-Stack To-Do List Application
+# 📝 Premium Full-Stack To-Do Application
 
-## Project Title & Objective
-**Title:** Full-Stack To-Do List Application  
-**Objective:** Build a full-stack CRUD To-Do app demonstrating frontend-backend communication, RESTful API design, and persistence using MongoDB.
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
+![Express.js](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge)
+![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
 
----
-
-## Project Description (what & why)
-This app allows users to create, read, update, and delete tasks. Optional authentication via JWT enables private task lists per user. The project demonstrates:
-- REST API design with Node.js + Express
-- MongoDB storage with Mongoose
-- React frontend with responsive UI and filters
-- Deployment-ready configuration for client + server
+A stunning, full-stack ToDo web application built with **React (frontend)** and **Node.js + Express (backend)**.  
+It allows users to manage daily tasks — add, edit, delete, and mark tasks as completed — with real-time updates and secure authentication.
 
 ---
 
-## Tech Stack
-- Frontend: React (Create React App), HTML, CSS, JS
-- Backend: Node.js, Express.js
-- Database: MongoDB (Atlas or local)
-- Auth: bcrypt for password hashing, JWT for tokens
-- Tools: Postman, Git/GitHub, Vercel/Netlify (client), Render/Heroku (server)
+## 🚀 Features
+
+- **Premium UI/UX:** Dark mode aesthetics with dynamic gradients, `backdrop-filter` glassmorphism, and sleek hover animations.
+- **Advanced Date Tracking:** Native Day/Month/Year dropdown pickers mapped strictly to user locale contexts.
+- **Smart Progress Tracker:** Automatic visual calculation of completed vs. internal tasks.
+- **Priority Badging:** Dynamic color-coded visual tagging (`High`, `Medium`, `Low`).
+- **Unified Full-Stack Service:** Express backend natively serves the compiled React production client, eliminating the need for dual dev servers!
+- **Secure Authentication:** JWT-based user-specific task compartmentalization.
 
 ---
 
-## Repo Link
-`https://github.com/<your-username>/todo-major-project`  *(replace with your repo link)*
+## 🧩 Project Structure
+
+```
+todo-major-project/
+│
+├── client/              # React frontend (run `npm run build` here)
+├── server/              # Node.js + Express backend (serves the client automatically)
+├── docker-compose.yml   # Optional Docker setup
+├── package.json
+└── README.md
+```
 
 ---
 
-## Live / Deployed Links
-- Frontend: `https://<your-frontend-app>.vercel.app`  
-- Backend: `https://<your-backend-app>.onrender.com`  
-*(Replace with actual deployed links)*
+## ⚙️ Prerequisites
+
+Before you start, make sure you have the following installed:
+
+- [Node.js (v16 or higher)](https://nodejs.org/)
+- npm (comes with Node)
+- [MongoDB](https://www.mongodb.com/) running locally or cloud (Atlas)
 
 ---
 
-## Setup Instructions
+## 🧠 Run Locally (Unified Production Setup)
 
-### Prerequisites
-- Node.js >= 16, npm
-- MongoDB Atlas account (or local MongoDB)
-- Git
+You no longer need to run the client and server separately. The Express backend serves the React frontend cleanly.
 
-### Server (backend)
-1. `cd server`
-2. Copy `.env.example` to `.env` and fill values:
-   ```bash
-   PORT=5000
-   MONGO_URI=your_mongo_connection_string
-   JWT_SECRET=your_jwt_secret
-   ```
-3. Install & run:
-   ```bash
-   npm install
-   npm run dev      # uses nodemon (dev) or npm start for production
-   ```
-4. Seed sample tasks (optional):
-   ```bash
-   npm run seed
-   ```
+### 1️⃣ Clone the repository
+```bash
+git clone https://github.com/Saisuman55/todo-major-project.git
+cd todo-major-project
+```
 
-### Client (frontend)
-1. `cd client`
-2. Create `.env` (optional) to set `REACT_APP_API_URL` (default used: `http://localhost:5000/api`)
-3. Install & run:
-   ```bash
-   npm install
-   npm start
-   ```
+### 2️⃣ Configure Backend Environment
+Navigate to the `server` folder, create a `.env` file and add:
+```env
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_super_secret_key_here
+```
 
----
+### 3️⃣ Build the Premium Frontend
+Navigate to the `client/` directory and compile the React production build:
+```bash
+cd client
+npm install
+npm run build
+```
 
-## API Endpoints (summary)
+### 4️⃣ Start the Backend
+Navigate back to the `server/` directory, install dependencies, and run it:
+```bash
+cd ../server
+npm install
+npm run dev
+```
 
-**Auth**
-- `POST /api/auth/register` — { name, email, password }
-- `POST /api/auth/login` — { email, password } → returns `{ token }`
-
-**Tasks** (protected)
-- `GET /api/tasks` — get tasks of authenticated user (query: ?filter=completed|pending)
-- `POST /api/tasks` — create task `{ title, description, dueDate?, priority? }`
-- `GET /api/tasks/:id` — get one task
-- `PUT /api/tasks/:id` — update task
-- `DELETE /api/tasks/:id` — delete task
+**That's it!** Navigate to **http://localhost:5000** in your web browser. Express will automatically route your API requests securely and serve your beautiful React Client UI.
 
 ---
 
-## Test Credentials (for review)
-- **Email:** reviewer@example.com  
-- **Password:** Password123
+## 🔌 API Endpoints 
+
+**Authentication**
+- `POST /api/auth/register` — Requires `{ name, email, password }`
+- `POST /api/auth/login` — Requires `{ email, password }` → Returns `{ token }`
+
+**Tasks (Protected)**
+- `GET /api/tasks` — Fetch user's tasks (optional `?filter=completed|pending`)
+- `POST /api/tasks` — Create task `{ title, description, dueDate, priority }`
+- `GET /api/tasks/:id` — Get one specific task
+- `PUT /api/tasks/:id` — Update existing task
+- `DELETE /api/tasks/:id` — Delete task
+
+---
+
+## 🧑‍💻 Author
+
+**Sai Suman Samantaray**
+📍 Khordha, Odisha, India
+🔗 [GitHub](https://github.com/Saisuman55)
+
+---
+
+## 📜 License
+
+This project is open-source and available under the [MIT License](LICENSE).

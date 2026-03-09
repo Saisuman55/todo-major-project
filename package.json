@@ -1,24 +1,16 @@
 {
-  "name": "todo-server",
+  "name": "todo-major-project",
   "version": "1.0.0",
-  "main": "server.js",
-  "engines": {
-    "node": ">=16"
-  },
+  "private": true,
+  "description": "Full-stack ToDo web app (React client + Express/Mongo server).",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js",
-    "seed": "node seed/seedTasks.js"
-  },
-  "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "cors": "^2.8.5",
-    "dotenv": "^16.0.3",
-    "express": "^4.18.2",
-    "jsonwebtoken": "^9.0.0",
-    "mongoose": "^7.5.0"
+    "bootstrap": "npm install && npm --prefix todo-major-project/server install && npm --prefix todo-major-project/client install",
+    "dev": "concurrently -n server,client -c cyan,magenta \"npm --prefix todo-major-project/server run dev\" \"npm --prefix todo-major-project/client start\"",
+    "server": "npm --prefix todo-major-project/server run dev",
+    "client": "npm --prefix todo-major-project/client start",
+    "start": "npm --prefix todo-major-project/server start"
   },
   "devDependencies": {
-    "nodemon": "^2.0.22"
+    "concurrently": "^9.0.0"
   }
 }

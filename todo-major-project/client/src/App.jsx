@@ -15,6 +15,7 @@ function App(){
   const [loading, setLoading] = useState(false);
   const [filter, setFilter] = useState(''); // '', 'completed', 'pending'
   const [error, setError] = useState('');
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     if (token) {
@@ -63,45 +64,80 @@ function App(){
     setAuthToken(null);
   };
 
+  const stats = {
+    total: tasks.length,
+    completed: tasks.filter(t => t.completed).length,
+  };
+  stats.pending = stats.total - stats.completed;
+
+  const progressPct = stats.total ? Math.round((stats.completed / stats.total) * 100) : 0;
+
   return (
     <div className="container">
       <header>
-        <h1>To-Do App</h1>
+        <div className="brand">
+          <h1>To-Do App</h1>
+          {user ? <p className="subtitle">Stay on top of your day, {user.name}.</p> : <p className="subtitle">Sign in and organize your tasks with ease.</p>}
+        </div>
         <div>
           {user ? (
-            <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
-              <span style={{ color: '#374151' }}>Hi, {user.name}</span>
-              <button onClick={handleLogout} aria-label="Logout">Logout</button>
-            </div>
+            <button className="btn-outline" onClick={handleLogout} aria-label="Logout">Logout</button>
           ) : null}
         </div>
       </header>
 
       {!token ? (
-        <AuthForm onAuthSuccess={handleLogin} />
+        <div className="glass-card auth">
+          <AuthForm onAuthSuccess={handleLogin} />
+        </div>
       ) : (
         <>
-          <div style={{ display: 'flex', gap: 12, marginBottom: 12, alignItems: 'center' }}>
+          {stats.total > 0 && (
+            <div className="progress-container glass-card" style={{ padding: '1rem 1.5rem', marginBottom: '1.5rem' }}>
+              <div className="progress-text">
+                <span>Your Progress</span>
+                <span>{progressPct}% ({stats.completed}/{stats.total})</span>
+              </div>
+              <div className="progress-bar-bg">
+                <div className="progress-bar-fill" style={{ width: `${progressPct}%` }}></div>
+              </div>
+            </div>
+          )}
+
+          <div className="glass-card" style={{ padding: '1rem 1.5rem' }}>
             <TaskForm onTaskCreated={() => loadTasks(filter)} />
-            <div style={{ marginLeft: 'auto', display: 'flex', gap: 8, alignItems: 'center' }}>
-              <label style={{ color: '#6b7280' }}>Filter:</label>
+          </div>
+
+          <div className="task-toolbar glass-card" style={{ padding: '1rem 1.5rem', marginBottom: '1.5rem' }}>
+            <input
+              className="search-input"
+              placeholder="Search tasks…"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+            <div className="filter-group">
               <select value={filter} onChange={(e) => setFilter(e.target.value)}>
-                <option value="">All</option>
+                <option value="">All Tasks</option>
                 <option value="completed">Completed</option>
                 <option value="pending">Pending</option>
               </select>
             </div>
           </div>
 
-          {loading ? <p>Loading tasks…</p> : null}
-          {error ? <p style={{ color: '#e11d48' }}>{error}</p> : null}
+          {loading ? <p style={{ textAlign: 'center', color: 'var(--text-muted)' }}>Loading tasks…</p> : null}
+          {error ? <p className="error" style={{ textAlign: 'center' }}>{error}</p> : null}
 
-          <TaskList tasks={tasks} refresh={() => loadTasks(filter)} />
+          <TaskList
+            tasks={tasks}
+            refresh={() => loadTasks(filter)}
+            search={search}
+            stats={stats}
+          />
         </>
       )}
 
-      <footer style={{ marginTop: 20, color: '#9ca3af', fontSize: 13 }}>
-        Built for Major Project — follow the repo README for server setup & deployment.
+      <footer style={{ marginTop: '3rem', textAlign: 'center', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
+        Built for Major Project — Premium Glassmorphism UI
       </footer>
     </div>
   );
