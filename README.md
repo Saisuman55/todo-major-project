@@ -35,6 +35,14 @@ Dynamic blur mapping, interactive task checkboxes, and visual progress tracking.
 Complete interactive calendar floating smoothly above layered cards.
 <img src="./screenshots/3-datepicker.png" alt="DatePicker Screenshot" width="800"/>
 
+### 4. Interactive Edit Mode
+In-place seamless task editing that instantly synchronizes forms with updated parameters.
+<img src="./screenshots/4-edit-task.png" alt="Edit Task Screenshot" width="800"/>
+
+### 5. Instant Filtering & Search
+Live search filtering seamlessly connected to task states and keywords for quick retrieval.
+<img src="./screenshots/5-search-filter.png" alt="Search Filter Screenshot" width="800"/>
+
 ---
 
 ## 🧩 Project Structure
