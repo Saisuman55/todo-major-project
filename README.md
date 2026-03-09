@@ -21,6 +21,22 @@ It allows users to manage daily tasks — add, edit, delete, and mark tasks as c
 
 ---
 
+## 📸 Application Snapshots
+
+### 1. Secure Authentication Login
+A streamlined entry point that handles secure JWT handshakes.
+<img src="./screenshots/1-login.png" alt="Login Screenshot" width="800"/>
+
+### 2. Glassmorphism Dashboard
+Dynamic blur mapping, interactive task checkboxes, and visual progress tracking.
+<img src="./screenshots/2-dashboard.png" alt="Dashboard Screenshot" width="800"/>
+
+### 3. Native Date Picker Flow
+Complete interactive calendar floating smoothly above layered cards.
+<img src="./screenshots/3-datepicker.png" alt="DatePicker Screenshot" width="800"/>
+
+---
+
 ## 🧩 Project Structure
 
 ```
