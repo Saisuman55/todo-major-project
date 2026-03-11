@@ -1,12 +1,16 @@
 # 📝 Premium Full-Stack To-Do Application
 
+**🌟 Live Vercel Deployment:** [https://to-do-list-project-chi-amber.vercel.app](https://to-do-list-project-chi-amber.vercel.app)
+
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
 ![Express.js](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge)
 ![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
 
-A stunning, full-stack ToDo web application built with **React (frontend)** and **Node.js + Express (backend)**.  
-It allows users to manage daily tasks — add, edit, delete, and mark tasks as completed — with real-time updates and secure authentication.
+A stunning, ToDo web application built using **React**.  
+It allows users to manage daily tasks — add, edit, delete, and mark tasks as completed — with a beautifully designed UI. 
+
+*(Note: Data is currently stored in your browser's LocalStorage for instant online access without needing a database backend)*
 
 ---
 
@@ -109,28 +113,10 @@ npm run dev
 
 ## 🌍 Deploy Live (Internet)
 
-To host your full-stack MERN application for free on the public internet, we recommend **Render.com**. 
+The application has been converted to use the browser's `localStorage` and is currently hosted live on Vercel at:  
+👉 **[https://to-do-list-project-chi-amber.vercel.app](https://to-do-list-project-chi-amber.vercel.app)**
 
-### 1️⃣ Set up MongoDB Atlas (Cloud Database)
-1. Create a free account at [MongoDB Atlas](https://www.mongodb.com/atlas/database) and launch an **M0** (Free) cluster.
-2. Under "Database Access", create a Database User with a password.
-3. Under "Network Access", add IP address `0.0.0.0/0` (Allow from anywhere).
-4. Click "Connect", choose "Connect your application", and copy the `MONGO_URI` connection string.
-
-### 2️⃣ Deploy to Render.com
-1. Go to [render.com](https://render.com) and log in with your GitHub account.
-2. Click **New +** and select **Web Service**.
-3. Connect your GitHub repository (`Saisuman55/todo-major-project`).
-4. Configure the Web Service exactly like this:
-   - **Environment:** `Node`
-   - **Build Command:** `cd todo-major-project/client && npm install && npm run build && cd ../server && npm install`
-   - **Start Command:** `cd todo-major-project/server && node server.js`
-5. Click **Advanced** and add two **Environment Variables**:
-   - `MONGO_URI` = *(Paste your connection string from Step 1)*
-   - `JWT_SECRET` = `my_super_secret_key_123` *(Can be any secure random string)*
-6. Click **Create Web Service**.
-
-Your live URL will be ready in ~3 minutes (e.g., `https://todo-app-xyz.onrender.com`).
+Because it relies on `localStorage` for data persistence, you do not need to configure MongoDB or an Express server to deploy it. You can deploy it yourself directly from GitHub to Vercel in 3 clicks!
 
 ---
 
