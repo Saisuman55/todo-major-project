@@ -107,6 +107,33 @@ npm run dev
 
 ---
 
+## 🌍 Deploy Live (Internet)
+
+To host your full-stack MERN application for free on the public internet, we recommend **Render.com**. 
+
+### 1️⃣ Set up MongoDB Atlas (Cloud Database)
+1. Create a free account at [MongoDB Atlas](https://www.mongodb.com/atlas/database) and launch an **M0** (Free) cluster.
+2. Under "Database Access", create a Database User with a password.
+3. Under "Network Access", add IP address `0.0.0.0/0` (Allow from anywhere).
+4. Click "Connect", choose "Connect your application", and copy the `MONGO_URI` connection string.
+
+### 2️⃣ Deploy to Render.com
+1. Go to [render.com](https://render.com) and log in with your GitHub account.
+2. Click **New +** and select **Web Service**.
+3. Connect your GitHub repository (`Saisuman55/todo-major-project`).
+4. Configure the Web Service exactly like this:
+   - **Environment:** `Node`
+   - **Build Command:** `cd todo-major-project/client && npm install && npm run build && cd ../server && npm install`
+   - **Start Command:** `cd todo-major-project/server && node server.js`
+5. Click **Advanced** and add two **Environment Variables**:
+   - `MONGO_URI` = *(Paste your connection string from Step 1)*
+   - `JWT_SECRET` = `my_super_secret_key_123` *(Can be any secure random string)*
+6. Click **Create Web Service**.
+
+Your live URL will be ready in ~3 minutes (e.g., `https://todo-app-xyz.onrender.com`).
+
+---
+
 ## 🔌 API Endpoints 
 
 **Authentication**
