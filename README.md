@@ -1,4 +1,4 @@
-# 📝 Premium Full-Stack To-Do Application
+# 📝 Full-Stack To-Do Application
 
 **🌟 Live Vercel Deployment:** [https://to-do-list-project-chi-amber.vercel.app](https://to-do-list-project-chi-amber.vercel.app)
 
